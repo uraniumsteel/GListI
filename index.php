@@ -6,29 +6,27 @@
         <link rel="stylesheet" type="text/css" href="includes/css/redmond/jquery-ui-1.9.2.custom.min.css"/>
         <link rel="stylesheet" type="text/css" href="includes/css/main.css"/>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
+        <script src="includes/js/jquery-ui-1.9.2.custom.min.js"></script>
         <script type="text/javascript" src="includes/js/jquery.mjs.nestedSortable.js"></script>
         <script type="text/javascript" src="includes/js/main.js"></script>
     </head>
     <body>
         <div id="header">
             <div id="sect-left">
-                <h1>IDo = Intelligent to Do</h1>
+                <h1>Gould Intelligent List Manager: GListI</h1>
             </div>
             <div id="sect-right" >
                 <form name="logout" action="index.php" method="post">
-                <a href="" onclick="javascript: document.logout.submit();">logout</a>
-                <input type="hidden" name="logout" value="logout"/>
+                    <input type="hidden" name="logout" value="logout"/>
+                    <input type="submit" value="logout"/>
                 </form>
             </div>
         </div>
 <?php
-session_start();
-if (isset($_SESSION['yourname'])) { $loggedin = true; }
-else { $loggedin = false; }
-
 /* check login status */
+
 if (isset($_POST['logout'])) {
+    $loggedin=false;
     if (ini_get("session.use_cookies")) {
         $params = session_get_cookie_params();
         setcookie(session_name(), '', time() - 42000,
@@ -39,6 +37,12 @@ if (isset($_POST['logout'])) {
     session_destroy();
     session_start();
 }
+
+session_start();
+if (isset($_SESSION['yourname'])) { $loggedin = true; }
+else { $loggedin = false; }
+
+
 if (isset($_POST['yourname']) && isset($_POST["password"])) {
     if ((strtolower(trim($_POST["password"])) == "admin") && (strtolower(trim($_POST['yourname'])) == "admin")) {
         $_SESSION['yourname'] = trim($_POST['yourname']);
@@ -48,8 +52,8 @@ if (isset($_POST['yourname']) && isset($_POST["password"])) {
 if (!$loggedin) {  // If Not Logged in:
     $_SESSION['listinuse'] = 'default';
 ?>
-         <form name="login" action="index.php" method="post">
-                <fieldset><legend>Intelligent to Do Login</legend>
+         <form id="login" name="login" action="index.php" method="post">
+                <fieldset><legend>Gould Intelligent ListMgr Login</legend>
          <label for="username">Name:</label><input type='text' value='' name='yourname'id="username"/><br/>
                 <label for="password">Password:</label><input type='password' val='' name='password' id="password"/><br/>
                 <input type='submit' value='Enter' name="OK"/><br/>
