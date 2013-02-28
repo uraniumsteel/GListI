@@ -1,0 +1,180 @@
+/* 
+    Document   : main.css
+    Created on : Nov 26, 2012, 2:58:23 PM
+    Author     : rgould
+    Description:
+        Purpose of the stylesheet follows.
+*/
+body {width: 99%; }
+#header { height: 48px; }
+#header h1 { margin: 0; padding: 0; }
+
+#lists {width: 49%; float: left; }
+#journal { width: 49%; float: right; }
+#toolbarmain { height: 16px; }
+#listtoolbar { height: 16px;}
+
+
+ul {
+    list-style-type: none;
+    margin: 16px 0 0 4px;
+    padding: 0;
+    font-size: 13px;
+}
+div.sublist {
+    display: inline;
+}
+
+ul li ul {
+   margin: 0 0 0 25px;
+}
+#listdata li {
+  /* line-height: 24px; */
+}
+#listdata li .handle {
+    float: left;
+    width: 20px;
+    cursor: move;
+}
+#listdata li .itemtext { cursor: text;}
+#listdata li {
+    border: 1px solid #d4d4d4;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border-color: #D4D4D4 #D4D4D4 #BCBCBC;
+    padding: 2px;
+    margin: 2px 0;
+    cursor: pointer;
+    background: #f6f6f6;
+    background: -moz-linear-gradient(top,  #ffffff 0%, #f6f6f6 47%, #ededed 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(47%,#f6f6f6), color-stop(100%,#ededed));
+    background: -webkit-linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#ededed 100%);
+    background: -o-linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#ededed 100%);
+    background: -ms-linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#ededed 100%);
+    background: linear-gradient(to bottom,  #ffffff 0%,#f6f6f6 47%,#ededed 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
+}
+
+li#trash { 
+  background: #f66666;
+}
+.disclose { cursor: pointer; }
+#listdata li.mjs-nestedSortable-collapsed > ul {
+    display: none;
+}
+
+#listdata li.mjs-nestedSortable-branch > div > .disclose {
+    display: inline-block;
+}
+
+#listdata li.mjs-nestedSortable-collapsed > div > .disclose > span:before {
+    content: '+ ';
+}
+
+#listdata li.mjs-nestedSortable-expanded > div > .disclose > span:before {
+    content: '- ';
+}
+
+
+
+.floatl { 
+    float: left;
+    margin-right: 6px;
+}
+
+#trash {
+    margin: 0;
+    padding: 0;
+}
+.popup { 
+    display: none;
+}
+
+.xtra, .floatr { float: right; }
+.control { color: blue; }
+#NotesNDue label { 
+    display: block;
+    float: left;
+    width: 75px; 
+}
+
+.itemtext { margin-bottom: 4px; }
+.itemnotes, .itemdate {
+    display: block;
+    position: relative;
+    font-size: 10px;
+    bottom: .5em;
+    padding-left: 0px;
+    line-height: 11px;
+    margin: 4px 0 0 45px;
+}
+.itemnotes { color: #6666ff; }
+.itemdate {  color: #ff6666; }
+#journalsaved { font-size: 10px; color: blue; }
+#edit1 {
+    background-color:#ffffff;
+    color: #800080;
+    font-size: 14px;
+}
+
+#openlist {
+    position: absolute;
+    border: 2px inset blue;
+    border-radius: 15px;
+    top: 50px;
+    left: 50px;
+    width: 250px;
+    padding: 8px;
+    background-color: cornsilk;
+}
+
+#openlist div.widget-header, #journal h2 {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: blue;
+}
+
+#openlist ul {
+    margin: 0;
+    padding: 0;
+}
+
+#openlist input[type="text"] {
+    width: 180px;
+}
+#openlist button {
+    background-color: #800080;
+    border-color: #800080;
+    border-radius: 8px;
+    color: white;
+}
+#openlist button.cancelbut {
+    background-color: red;
+    font-weight: bold;
+    color: white;
+    border-radius: 8px;
+    border-color:  red;
+    float: right;
+}
+
+.separator1 {
+    border-top: 1px groove #ff3333;
+    border-bottom: 1px groove #ff3333;
+    margin: 4px 0 4px 0;
+    padding: 2px 0 2px 0;
+}
+
+
+#maintoolbar {
+    float: right;
+}
+
+button.ui-icon { display: inline; }
+
+#sect-right {
+    float: right;
+    font-size: 14px;
+    color: blue;
+}
