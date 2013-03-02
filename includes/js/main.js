@@ -7,7 +7,7 @@ var TrashLine = '<li id="trash"><div class="sublist"><span class="ui-icon ui-ico
 var lcount = 0;
 //================== DOCUMENT LOAD/READY =======================================
 $(document).ready(function(){
-    GetLists();
+    //GetLists();
     $('.toolbar .ui-icon').hover(function(){
         $(this).toggleClass('ui-state-hover');
     });

@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <title>Intelligent ToDo by Gould</title>
+        <title>Lists by Gould Intelligent, LLC</title>
         <link rel="stylesheet" type="text/css" href="includes/css/redmond/jquery-ui-1.9.2.custom.min.css"/>
         <link rel="stylesheet" type="text/css" href="includes/css/main.css"/>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -11,51 +11,43 @@
         <script type="text/javascript" src="includes/js/main.js"></script>
     </head>
     <body>
+        <?php 
+        include_once("includes/session.php");
+        ?>
+        <div id="page">
         <div id="header">
             <div id="sect-left">
                 <h1>Gould Intelligent List Manager: GListI</h1>
             </div>
             <div id="sect-right" >
+                <?php if($session->isAdmin()) {
+                    echo "<button type='button' onclick='admin();'>Admin</button>";
+                } ?>
+                <?php if ($session->logged_in) { ?>
                 <form name="logout" action="index.php" method="post">
                     <input type="hidden" name="logout" value="logout"/>
-                    <input type="submit" value="logout"/>
+                    <input type="submit" value="logout" class="button"/>
                 </form>
+                 
+                <?php } ?>
             </div>
         </div>
+
 <?php
 /* check login status */
 
-if (isset($_POST['logout'])) {
-    $loggedin=false;
-    if (ini_get("session.use_cookies")) {
-        $params = session_get_cookie_params();
-        setcookie(session_name(), '', time() - 42000,
-                $params["path"], $params["domain"],
-                $params["secure"], $params["httponly"]
-        );
-    }
-    session_destroy();
-    session_start();
-}
-
-session_start();
-if (isset($_SESSION['yourname'])) { $loggedin = true; }
-else { $loggedin = false; }
-
-
-if (isset($_POST['yourname']) && isset($_POST["password"])) {
-    if ((strtolower(trim($_POST["password"])) == "admin") && (strtolower(trim($_POST['yourname'])) == "admin")) {
-        $_SESSION['yourname'] = trim($_POST['yourname']);
-        $loggedin = true;
-    }
-}
-if (!$loggedin) {  // If Not Logged in:
-    $_SESSION['listinuse'] = 'default';
+if (! $session->logged_in) {   // If Not Logged in:
+    $_SESSION['listinuse'] = 'default';   //<TODO> This needs to be fixed
 ?>
-         <form id="login" name="login" action="index.php" method="post">
+
+         <form id="login" name="login" action="process.php" method="POST">
                 <fieldset><legend>Gould Intelligent ListMgr Login</legend>
-         <label for="username">Name:</label><input type='text' value='' name='yourname'id="username"/><br/>
-                <label for="password">Password:</label><input type='password' val='' name='password' id="password"/><br/>
+                 <?php   if ($form->num_errors > 0) {
+           echo "<span class='errormes'>" .$form->num_errors . " error(s) found </span><br/>";
+    } ?>
+                <label for="user">Name:</label><input type='text' value='<?php echo $form->value("user"); ?>' name='user' id="username"/> <?php echo $form->error("user"); ?><br/>
+                <label for="pass">Password:</label><input type='password' val='<?php echo $form->value("pass"); ?>' name='pass' id="password"/> <?php echo $form->error("pass"); ?><br/>
+                <input type="hidden" value="procLogin" name="request"/>
                 <input type='submit' value='Enter' name="OK"/><br/>
                 </fieldset>
 <?php
@@ -107,9 +99,11 @@ if (!$loggedin) {  // If Not Logged in:
                  </div>
                  <button type="button" value="Close" class="cancelbut" onclick="javascript:$('#openlist').hide();">Close</button>
              </div>
+        </div>
 <?php
 }
 ?>
              <div id="debug"></div>
+             
     </body>
 </html>
