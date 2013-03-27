@@ -15,9 +15,9 @@
  * to the MySQL database. Make sure the information is correct.
  */
 define("DB_SERVER", "localhost");
-define("DB_USER", "GListIDB1");
-define("DB_PASS", "5K7K8ERY4dvVVGPt");
-define("DB_NAME", "glistidb1");
+define("DB_USER", "YourDBUserNameHere");
+define("DB_PASS", "YourDBPasswordHere");
+define("DB_NAME", "YourDBNameHere");
 
 /**
  * Database Table Constants - these constants hold the names of all the database tables used
